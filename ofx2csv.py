@@ -35,9 +35,10 @@ def ofx2csv(file_):
     sd = ofx.account.statement.start_date    # The start date of the transactions
     ed = ofx.account.statement.end_date      # The end date of the transactions
     bal = ofx.account.statement.balance       # The money in the account as of the statement date
+    crc = ofx.account.curdef
     for t in ofx.account.statement.transactions:  # A list of account activities
-        yield '{};{};{};{};{}'.format(
-            n, rn, t.date, t.memo, t.amount)
+        yield '{};{};{};{};{};{}'.format(
+            rn, n, t.date, t.memo, crc, t.amount)
 
 
 if __name__ == '__main__':
